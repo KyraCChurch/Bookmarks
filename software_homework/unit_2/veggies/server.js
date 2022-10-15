@@ -1,20 +1,20 @@
 require('dotenv').config()
 // Require modules
-const fs = require('fs') // this engine requires the fs module like we did Saturday
+const fs = require('fs') 
 const express = require('express')
 const mongoose = require('mongoose')
 const methodOverride = require('method-override')
 const Veggie = require('./models/veggie')
-// this makes 2 const fruits & veggies 
+
 
 // Create our express app
 const app = express()
 
 // Configure the app (app.set)
 /*Start Config */
-app.use(express.urlencoded({ extended: true })) // This code makes us have req.body
+app.use(express.urlencoded({ extended: true })) 
 app.engine('jsx', require('jsx-view-engine').createEngine())
-app.set('view engine', 'jsx') // register the jsx view engine
+app.set('view engine', 'jsx') 
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
 mongoose.connection.once('open', () => {
   console.log('connected to MongoDB Atlas')
@@ -80,7 +80,6 @@ app.put('/veggies/:id', (req, res) => {
 
 // CREATE
 app.post('/veggies', (req, res) =>{
-  // req.body which contains all of our form Data we will get from the user
   req.body.readyToEat === 'on' ? req.body.readyToEat = true : req.body.readyToEat = false
   Veggie.create(req.body, (err, createdVeggie) => {
     if(err){
