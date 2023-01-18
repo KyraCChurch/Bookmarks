@@ -3,6 +3,7 @@ import Login from '../Login/Login'
 import SignUp from '../SignUp/SignUp'
 import styles from './Auth.module.scss'
 
+
 export default function Auth ({
   login,
   signUp,
@@ -26,7 +27,7 @@ export default function Auth ({
       return token
     }
     const myToken = getToken()
-    const data = myToken ? JSON.parse(window.atob(myToken.split('.')[1])).user: null
+    const data = myToken ? JSON.parse(window.atob(myToken.split('.')[1])).user : null
     setUser(data)
     setToken(myToken)
   }, [])
@@ -37,28 +38,29 @@ export default function Auth ({
               ? <h1 className={styles.h1}>Welcome {user.name.toUpperCase()}</h1>
               : <>
                 <button
-                className={styles.button}
+                  className={styles.button}
                   onClick={() => {
                     setShowSignUp(!showSignUp)
                   }}
                 >
-                  {showSignUp ? 'Sign Up With A New Account Below or Click Here To Login As Existing User' : 'Welcome Back, Login as an exisiting user or Click Here To Sign Up With New Account'}
+                  {showSignUp ? 'Sign Up With A New Account Below or Click Here To Login As An Existing User' : 'Welcome Back, Login As An Existing User or Click Here To Sign Up With A New Account'}
                 </button>
                 {
-                showSignUp
-                  ? <SignUp
-                      signUp={signUp}
-                      credentials={credentials}
-                      handleChangeAuth={handleChangeAuth}
-                    />
-                  : <Login
-                      login={login}
-                      credentials={credentials}
-                      handleChangeAuth={handleChangeAuth}
-                    />
-            }
+                    showSignUp
+                      ? <SignUp
+                          signUp={signUp}
+                          credentials={credentials}
+                          handleChangeAuth={handleChangeAuth}
+                        />
+                      : <Login
+                          login={login}
+                          credentials={credentials}
+                          handleChangeAuth={handleChangeAuth}
+                        />
+                }
               </>
         }
+
     </>
   )
 }
