@@ -14,7 +14,7 @@ Login
 */
 router.post('/login', userCtrl.login, userCtrl.respondWithToken)
 /*
-api/users/bookmarks
+/api/users/bookmarks
 Get Bookmarks By User
 */
 router.get('/bookmarks', checkToken, ensureLoggedIn, userCtrl.getBookmarksByUser, userCtrl.respondWithBookmarks)
